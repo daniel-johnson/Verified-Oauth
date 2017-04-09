@@ -6,9 +6,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :last_name
       t.integer :phone_number
       t.string :email
-      # Include the below? Its in the short form, but I don't know if it's needed/superfluous.
-      # t.integer :marital_status
-      # t.boolean :common_law
       t.string :sex
       t.string :address_number
       t.string :address_street
@@ -20,9 +17,9 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.boolean :phone_verified, default: false
       t.boolean :email_verified, default: false
       t.boolean :verified, default: false
-      t.string :main_id
-      t.string :support_id
-
+      t.string :main_identification
+      t.string :support_identification
+      t.date :birthday
       t.timestamps
     end
   end

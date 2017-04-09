@@ -38,8 +38,6 @@ ActiveRecord::Schema.define(version: 20170314070425) do
     t.string   "last_name"
     t.integer  "phone_number"
     t.string   "email"
-    t.integer  "marital_status"
-    t.boolean  "common_law"
     t.string   "sex"
     t.string   "address_number"
     t.string   "address_street"
@@ -47,11 +45,14 @@ ActiveRecord::Schema.define(version: 20170314070425) do
     t.string   "address_city"
     t.string   "address_province"
     t.string   "address_postal_code"
-    t.boolean  "address_verified"
-    t.boolean  "phone_verified"
-    t.boolean  "verified"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.boolean  "address_verified",       default: false
+    t.boolean  "phone_verified",         default: false
+    t.boolean  "email_verified",         default: false
+    t.boolean  "verified",               default: false
+    t.string   "main_identification"
+    t.string   "support_identification"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   add_foreign_key "user_languages", "languages"
