@@ -9,6 +9,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <div class="col-sm-12">
+        <div>
+          <p><%= flash[:notice] %></p>
+          <p><%= flash[:alert] %></p>
+        </div>
+        <div>
+      	  <% if current_user %>
+      		  Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
+      		<% else %>
+      		  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+      		<% end %>
+        </div>
+      </div>
+
+  	  <%= yield %>
+    </div>
   </body>
 </html>

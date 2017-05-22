@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314070425) do
+ActiveRecord::Schema.define(version: 20170503160154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170314070425) do
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
-    t.integer  "phone_number"
+    t.string   "phone"
     t.string   "email"
     t.string   "sex"
     t.string   "address_number"
@@ -51,8 +51,13 @@ ActiveRecord::Schema.define(version: 20170314070425) do
     t.boolean  "verified",               default: false
     t.string   "main_identification"
     t.string   "support_identification"
+    t.date     "birthday"
+    t.string   "password_digest"
+    t.boolean  "password_not_set",       default: false
+    t.string   "aasm_state"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "stage",                  default: 0
   end
 
   add_foreign_key "user_languages", "languages"

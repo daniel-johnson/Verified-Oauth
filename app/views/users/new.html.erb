@@ -1,0 +1,16 @@
+<div class="col-sm-12">
+	<h2>Signup!</h2>
+
+	<p>Here's how it works: you need to give us either your phone number or email.</p>
+	<p>The password is optional. If you don't care to remember one then leave it blank and we'll send you a login code to your phone/email when you want to log back in.</p>
+	<p>You can set the password at any time when you're logged in.</p>
+
+	<%= simple_form_for :user, url: users_path do |f| %>
+		<%= f.input  :first_name, 				required: false  %>
+		<%= f.input  :email, 					required: false  %>
+		<%= f.input  :phone, 					required: false  %>
+		<%= f.input  :password, 				required: false  %>
+		<%= f.input  :password_confirmation, 	required: false  %>
+	  	<%= f.button :submit, "Create Account"				 	 %>
+	<% end %>
+</div>

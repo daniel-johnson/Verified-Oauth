@@ -1,0 +1,7 @@
+<% simple_form_for current_user, url: profile_path, method: :post do |f| %>
+	<%= f.input  :first_name, 				required: false  %>
+	<%= f.input  :email, 					required: false  %>
+	<%= f.input  :phone, 					required: false  %>
+	<%= f.input  :password, 				required: false  %>
+	<%= f.input  :password_confirmation, 	required: false  %>
+  	<%= f.button :submit, "Create Account"				 	 %>

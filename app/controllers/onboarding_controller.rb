@@ -1,8 +1,5 @@
 class OnboardingController < ApplicationController
-	def homepage
-	end
-
-	def account
+	def home
 	end
 
 	def basic_info
