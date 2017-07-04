@@ -23,6 +23,7 @@ gem 'bcrypt', '~> 3.1.11'
 gem 'aasm', '~> 4.11', '>= 4.11.1'
 
 gem 'simple_form'
+gem 'oauth2'
 
 group :development, :test do
   gem 'byebug', platform: :mri

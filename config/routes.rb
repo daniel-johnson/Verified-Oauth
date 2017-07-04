@@ -1,15 +1,13 @@
-Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  Rails.application.routes.draw do
   root 'onboarding#home'
-
-  get 	'/signup' 	=> 'users#new'
-  post 	'/user' 	=> 'users#update'
+  resource :user, only: [:new, :create]
 
   get 	'/login' 	=> 'sessions#new'
   post 	'/login' 	=> 'sessions#create'
-  get 	'/logout' 	=> 'sessions#destroy'
+  get 	'/logout' => 'sessions#destroy'
 
-  get '/basic_info'		=> 'onboarding#basic_info'
+  get '/basic_info'	=> 'onboarding#basic_info'
   get '/contact'		=> 'onboarding#contact'
-  get '/citizenship'	=> 'onboarding#citizenship'
+  get '/id'	        => 'onboarding#id'
+  get '/complete'   => 'onboarding#complete'
 end

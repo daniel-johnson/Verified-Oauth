@@ -1,23 +1,25 @@
 class UsersController < ApplicationController
-	authorize, only: [:edit, :update]
+	before_action :authorize, only: [:edit, :update]
 
 	def new
 	end
 
 	def create
 	  user = User.new(create_user_params)
-	  user.manage_password
 	  if user.save
 	    session[:user_id] = user.id
 	    flash[:notice] = "Sign up successful"
-	    redirect_to '/'
+	    redirect_to(current_user.current_onboarding_path)
 	  else
 	  	flash[:alert] = user.errors.first
-	    redirect_to '/signup'
+	    render(root_path)
 	  end
 	end
 
 	def edit
+	end
+
+	def update
 	end
 
 	private
