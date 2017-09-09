@@ -3,14 +3,15 @@
 </div>
 
 <div class="col-xs-12 col-md-4">
-	<h4>Signup</h4>
+	<h4>Canadian Citizen Signup</h4>
 
 	<%= simple_form_for :user, url: user_path do |f| %>
-		<%= f.input  :email			  							%>
-		<%= f.input  :phone			  							%>
-		<%= f.input  :password 									%>
-		<%= f.input  :password_confirmation 		%>
-	  <%= f.button :submit, "Create Account"	%>
+		<%= f.input  	:email			  									%>
+		<%= f.input  	:phone			  									%>
+		<%= f.input  	:password 											%>
+		<%= f.input  	:password_confirmation 					%>
+		<%= f.input  	:canadian_citizen, as: :boolean	%>
+	  <%= f.button 	:submit, "Create Account"				%>
 	<% end %>
 
 	<h1>Login</h1>

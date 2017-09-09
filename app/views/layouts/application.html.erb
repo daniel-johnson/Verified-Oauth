@@ -20,7 +20,7 @@
       	  <% if current_user %>
       		  Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
       		<% else %>
-      		  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', new_user_path %>
+      		  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', "/" %>
       		<% end %>
         </div>
       </div>

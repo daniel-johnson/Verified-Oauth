@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503160154) do
+ActiveRecord::Schema.define(version: 20170809153148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "interview_videos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_interview_videos_on_user_id", using: :btree
+  end
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +29,38 @@ ActiveRecord::Schema.define(version: 20170503160154) do
     t.integer  "speakers_2006"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "main_id_photos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_main_id_photos_on_user_id", using: :btree
+  end
+
+  create_table "serious_photos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_serious_photos_on_user_id", using: :btree
+  end
+
+  create_table "silly_photos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_silly_photos_on_user_id", using: :btree
+  end
+
+  create_table "supporting_id_photos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_supporting_id_photos_on_user_id", using: :btree
   end
 
   create_table "user_languages", force: :cascade do |t|
@@ -38,28 +78,39 @@ ActiveRecord::Schema.define(version: 20170503160154) do
     t.string   "last_name"
     t.string   "phone"
     t.string   "email"
-    t.string   "sex"
+    t.string   "gender"
+    t.date     "birthdate"
+    t.string   "favourite_color"
     t.string   "address_number"
     t.string   "address_street"
     t.string   "address_unit"
     t.string   "address_city"
     t.string   "address_province"
     t.string   "address_postal_code"
-    t.boolean  "address_verified",       default: false
-    t.boolean  "phone_verified",         default: false
-    t.boolean  "email_verified",         default: false
-    t.boolean  "verified",               default: false
-    t.string   "main_identification"
-    t.string   "support_identification"
-    t.date     "birthday"
+    t.string   "address_verification_code"
+    t.datetime "address_verification_sent"
+    t.datetime "address_verified"
+    t.string   "phone_verifiation_code"
+    t.datetime "phone_verification_sent"
+    t.datetime "phone_verified"
+    t.string   "email_verification_code"
+    t.datetime "email_verification_sent"
+    t.datetime "email_verified"
+    t.datetime "user_verified"
+    t.string   "main_id"
+    t.string   "support_id"
+    t.string   "intro_video"
     t.string   "password_digest"
-    t.boolean  "password_not_set",       default: false
-    t.string   "aasm_state"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.integer  "stage",                  default: 0
+    t.boolean  "canadian_citizen"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
+  add_foreign_key "interview_videos", "users"
+  add_foreign_key "main_id_photos", "users"
+  add_foreign_key "serious_photos", "users"
+  add_foreign_key "silly_photos", "users"
+  add_foreign_key "supporting_id_photos", "users"
   add_foreign_key "user_languages", "languages"
   add_foreign_key "user_languages", "users"
 end

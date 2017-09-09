@@ -1,7 +1,33 @@
-<% simple_form_for current_user, url: profile_path, method: :post do |f| %>
-	<%= f.input  :first_name, 				required: false  %>
-	<%= f.input  :email, 					required: false  %>
-	<%= f.input  :phone, 					required: false  %>
-	<%= f.input  :password, 				required: false  %>
-	<%= f.input  :password_confirmation, 	required: false  %>
-  	<%= f.button :submit, "Create Account"				 	 %>
+<h1>Your Profile</h1>
+<p>Please provide your information.</p>
+
+<%= simple_form_for( @user, url: user_path ) do |f| %>
+  <%= f.input :first_name                             %>
+  <%= f.input :middle_name                            %>
+  <%= f.input :last_name                              %>
+  <%= f.input :birthdate                              %>
+  <%= f.input :favourite_color                        %>
+  <%= f.input :serious_photos, as: :file, input_html: { multiple: 'multiple' }              %>
+  <%= f.input :silly_photos, as: :file, input_html: { multiple: 'multiple' }                %>
+  <%= f.input :address_number                         %>
+  <%= f.input :address_street                         %>
+  <%= f.input :address_unit                           %>
+  <%= f.input :address_city                           %>
+  <%= f.input :address_province                       %>
+  <%= f.input :address_postal_code                    %>
+  <%= f.input :main_id_photos, as: :file, input_html: { multiple: 'multiple' }              %>
+  <%= f.input :supporting_id_photos, as: :file, input_html: { multiple: 'multiple' }        %>
+  <%= f.input :interview_videos, as: :file            %>
+  <%= f.button :submit, "Create Account"              %>
+<% end %>
+
+<%# form_for @user %>
+  <%#  %>
+  <%#  %>
+  <%#  %>
+  <%#  %>
+  <%#  %>
+  <%#  %>
+  <%#  %>
+  <%#  %>
+<%# end %>

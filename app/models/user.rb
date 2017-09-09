@@ -1,6 +1,24 @@
 class User < ApplicationRecord
 	include AASM
 	has_secure_password
+
+	validates :email, uniqueness: true
+	validates :phone, uniqueness: true
+
+	has_many :main_id_photos
+	has_many :supporting_id_photos
+	has_many :serious_photos
+	has_many :silly_photos
+	has_many :interview_videos
+
+	accepts_nested_attributes_for :main_id_photos
+	accepts_nested_attributes_for :supporting_id_photos
+	accepts_nested_attributes_for :serious_photos
+	accepts_nested_attributes_for :silly_photos
+	accepts_nested_attributes_for :interview_videos
+
+	# Idea - have scopes for the users current versions of ^^^ the above models. For easy access.
+
 	# before_save :contact_requirements
 	# before_save :check_basic_info_finished
 
@@ -12,38 +30,45 @@ class User < ApplicationRecord
 	# 	end
 	# end
 
-	aasm do
-		state :basic_info, :initial => true
-		state :contact, :id, :complete
+	#If already has password, and the user is trying to update the email.
 
-		# event :finished_citizenship do
-		# 	transitions :from => :citizenship, :to => :basic_info
-		# end
+	# aasm do
+	# 	state :basic_info, :initial => true
+	# 	state :contact, :id, :complete
 
-		event :finished_basic_info do
-			transitions :from => :basic_info, :to => :contact
-		end
+	# 	# event :finished_citizenship do
+	# 	# 	transitions :from => :citizenship, :to => :basic_info
+	# 	# end
 
-		event :finished_contact do
-			transitions :from => :contact, :to => :id
-		end
+	# 	event :finished_basic_info do
+	# 		transitions :from => :basic_info, :to => :contact
+	# 	end
 
-		event :finished_id do
-			transitions :from => :id, :to => :complete
-		end
-	end
+	# 	event :finished_contact do
+	# 		transitions :from => :contact, :to => :id
+	# 	end
 
-	def current_onboarding_path
-		case self.aasm_state
-		when "basic_info"
-			basic_info_path
-		when "contact"
-			contact_path
-		when "id"
-			id_path
-		when "complete"
-			complete_path
-		end
+	# 	event :finished_id do
+	# 		transitions :from => :id, :to => :complete
+	# 	end
+	# end
+
+	# def current_onboarding_path
+	# 	case self.aasm_state
+	# 	when "basic_info"
+	# 		basic_info_path
+	# 	when "contact"
+	# 		contact_path
+	# 	when "id"
+	# 		id_path
+	# 	when "complete"
+	# 		complete_path
+	# 	end
+	# end
+
+	def create_email_verification_code
+		#create code
+		#set sent time
 	end
 
 	private

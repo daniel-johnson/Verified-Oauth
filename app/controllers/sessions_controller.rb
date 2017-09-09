@@ -2,16 +2,7 @@ class SessionsController < ApplicationController
 	def new
 	end
 
-# create the login page
 	def create
-    # If there is a phone number - no password
-
-    # If there is an email - no password
-
-    # If there is an email w/ password
-
-    # If there is an phone w/ password
-
     user = User.find_by_email(params[:email])
     # If the user exists AND the password entered is correct.
     if user && user.authenticate(params[:password])
@@ -19,11 +10,11 @@ class SessionsController < ApplicationController
       # logged in when they navigate around our website.
       session[:user_id] = user.id
       flash[:notice] = "#{user.first_name} signed in"
-      redirect_to '/'
+      redirect_to edit_user_path
     else
     # If user's login doesn't work, send them back to the login form.
       flash[:alert] = user_flash_matrix(user, params)
-      redirect_to current_user.current_onboarding_path
+      render root_path
     end
   end
 

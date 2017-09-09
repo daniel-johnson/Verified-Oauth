@@ -6,23 +6,31 @@ class CreateUsers < ActiveRecord::Migration[5.0]
 			t.string    :last_name
 			t.string    :phone
 			t.string    :email
-			t.string    :sex
+			t.string    :gender
+			t.date			:birthdate
+			t.string		:favourite_color
 			t.string    :address_number
 			t.string    :address_street
 			t.string    :address_unit
 			t.string    :address_city
 			t.string    :address_province
 			t.string    :address_postal_code
-			t.boolean   :address_verified, default: false
-			t.boolean   :phone_verified, default: false
-			t.boolean   :email_verified, default: false
-			t.boolean   :verified, default: false
-			t.string    :main_identification
-			t.string    :support_identification
-			t.date      :birthday
+			t.string		:address_verification_code
+			t.datetime	:address_verification_sent
+			t.datetime  :address_verified
+			t.string		:phone_verifiation_code
+			t.datetime	:phone_verification_sent
+			t.datetime  :phone_verified
+			t.string		:email_verification_code
+			t.datetime	:email_verification_sent
+			t.datetime  :email_verified
+			t.datetime  :user_verified
+			t.string    :main_id
+			t.string    :support_id
+			t.string		:intro_video
 			t.string    :password_digest
-			t.boolean   :password_not_set, default: false
-			t.string    :aasm_state
+			t.boolean		:canadian_citizen, defualt: false
+
 			t.timestamps
 		end
 	end
