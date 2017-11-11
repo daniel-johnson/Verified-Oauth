@@ -1,5 +1,5 @@
   Rails.application.routes.draw do
-  root 'onboarding#home'
+  root to: "users#new"
   resource :user, only: [:create, :edit, :update]
 
   get 	'/login' 	=> 'sessions#new'

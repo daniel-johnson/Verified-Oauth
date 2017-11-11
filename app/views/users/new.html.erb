@@ -1,11 +1,42 @@
-<div class="col-sm-12">
-	<h2>Signup!</h2>
+<div class="col-xs-12">
+  <h1>Verified Identity OAuth</h1>
+</div>
 
-	<%= simple_form_for :user, url: user_path do |f| %>
-		<%= f.input  :email 				  					%>
-		<%= f.input  :phone 				  					%>
-		<%= f.input  :password 			  					%>
-		<%= f.input  :password_confirmation   	%>
-	  <%= f.button :submit, "Create Account"	%>
-	<% end %>
+<div class="col-xs-12 col-md-4">
+  <h4>Canadian Citizen Signup</h4>
+
+  <%= simple_form_for @user, url: user_path do |f| %>
+    <%= f.input   :email                          %>
+    <%= f.input   :phone                          %>
+    <%= f.input   :password                       %>
+    <%= f.input   :password_confirmation          %>
+    <%= f.input   :canadian_citizen, as: :boolean %>
+    <%= f.button  :submit, "Create Account"       %>
+  <% end %>
+
+  <h1>The rest of the world</h1>
+  <p>Sorry, only Canadian Citizens right now :( But if you love the idea, we can take your info and we'll let you know if something similar is happening in your country.</p>
+  <p>Why are we taking so much info? For the same reason that we're holding so much information on Canadian Citizens, because your identity has power. As one person, it may not feel like a lot, but all of us together, that's the magic.</p>
+  <p><strong>TODO:</strong> Validate their phone number, or maybe we can use Social login for this one, if we can get their country from FB or Google, that would be a decent filter.</p>
+
+    <%= simple_form_for @lead, url: user_path do |f| %>
+    <%= f.input  :email                    %>
+    <%= f.input  :phone                    %>
+    <%= f.input  :country, as: :country    %>
+    <%= f.button :submit, "Submit" %>
+  <% end %>
+
+  <h1>Login</h1>
+
+  <%= form_tag '/login' do %>
+    <div class="form-group">
+      <%= label_tag 'email'                                         %>
+      <%= email_field_tag :email, nil, class: "form-control"        %>
+    </div>
+    <div class="form-group">
+      <%= label_tag 'password'                                      %>
+      <%= password_field_tag :password, nil, class: "form-control"  %>
+    </div>
+    <%= submit_tag "Submit", class: "btn btn-default" %>
+  <% end %>
 </div>

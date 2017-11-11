@@ -25,6 +25,7 @@ gem 'aasm', '~> 4.11', '>= 4.11.1'
 gem 'simple_form'
 gem 'oauth2'
 gem 'simple_form_fancy_uploads'
+gem 'country_select'
 
 
 group :development, :test do

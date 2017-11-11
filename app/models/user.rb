@@ -2,8 +2,10 @@ class User < ApplicationRecord
 	include AASM
 	has_secure_password
 
-	validates :email, uniqueness: true
-	validates :phone, uniqueness: true
+	validates :email, uniqueness: true, presence: true
+	validates :phone, uniqueness: true, presence: true
+
+	validate :canadian?
 
 	has_many :main_id_photos
 	has_many :supporting_id_photos
@@ -72,6 +74,12 @@ class User < ApplicationRecord
 	end
 
 	private
+
+	def canadian?
+		if !canadian_citizen
+			errors.add(:canadian_citizen, "Sorry, only Canadian Citizens for now :( But you can use the form below to show that your interested in having it in your country.")
+		end
+	end
 
 	# def check_basic_info_finished
 	# 	# TODO

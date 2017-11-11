@@ -1,33 +1,31 @@
-<h1>Your Profile</h1>
-<p>Please provide your information.</p>
+<div class="offset-md-1 col-md-10 col-xs-12">
+  <h1>Your Profile</h1>
+  <p>Please provide your information.</p>
 
-<%= simple_form_for( @user, url: user_path ) do |f| %>
-  <%= f.input :first_name                             %>
-  <%= f.input :middle_name                            %>
-  <%= f.input :last_name                              %>
-  <%= f.input :birthdate                              %>
-  <%= f.input :favourite_color                        %>
-  <%= f.input :serious_photos, as: :file, input_html: { multiple: 'multiple' }              %>
-  <%= f.input :silly_photos, as: :file, input_html: { multiple: 'multiple' }                %>
-  <%= f.input :address_number                         %>
-  <%= f.input :address_street                         %>
-  <%= f.input :address_unit                           %>
-  <%= f.input :address_city                           %>
-  <%= f.input :address_province                       %>
-  <%= f.input :address_postal_code                    %>
-  <%= f.input :main_id_photos, as: :file, input_html: { multiple: 'multiple' }              %>
-  <%= f.input :supporting_id_photos, as: :file, input_html: { multiple: 'multiple' }        %>
-  <%= f.input :interview_videos, as: :file            %>
-  <%= f.button :submit, "Create Account"              %>
-<% end %>
+  <%= simple_form_for( @user, url: user_path ) do |f| %>
+    <%= f.input :first_name                             %>
+    <%= f.input :middle_name                            %>
+    <%= f.input :last_name                              %>
+    <%= f.input :birthdate, as: :date, html5: true, start_year: Date.today.year - 90,
+                end_year: Date.today.year - 12          %>
+    <%= f.input :favourite_color, input_html: {type: 'color'}   %>
+    <%# f.input :serious_photos, as: :file, input_html: { multiple: 'multiple' }        %>
+    <%= f.simple_fields_for :serious_photos do |sp| %>
+      <%= sp.file %>
+    <% end %>
 
-<%# form_for @user %>
-  <%#  %>
-  <%#  %>
-  <%#  %>
-  <%#  %>
-  <%#  %>
-  <%#  %>
-  <%#  %>
-  <%#  %>
-<%# end %>
+    <%= f.input :silly_photos, as: :file, input_html: { multiple: 'multiple' }          %>
+    <%= f.input :address_number                         %>
+    <%= f.input :address_street                         %>
+    <%= f.input :address_unit                           %>
+    <%= f.input :address_city                           %>
+    <%= f.input :address_province                       %>
+    <%= f.input :address_postal_code                    %>
+    <%= f.input :main_id_photos, as: :file, input_html: { multiple: 'multiple' }        %>
+    <%= f.input :supporting_id_photos, as: :file, input_html: { multiple: 'multiple' }  %>
+    <%= f.input :interview_videos, as: :file            %>
+    <%= f.button :submit, "Save Changes"              %>
+  <% end %>
+</div>
+
+<!-- <p>Capture Video: <input type="file" accept="video/*" id="capture" capture="camcorder"> -->

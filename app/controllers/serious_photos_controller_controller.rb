@@ -1,0 +1,2 @@
+class SeriousPhotosControllerController < ApplicationController
+end

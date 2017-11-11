@@ -9,27 +9,25 @@ class SessionsController < ApplicationController
       # Save the user id inside the browser cookie. This is how we keep the user
       # logged in when they navigate around our website.
       session[:user_id] = user.id
-      flash[:notice] = "#{user.first_name} signed in"
+      flash[:info] = "#{user.first_name} signed in"
       redirect_to edit_user_path
     else
     # If user's login doesn't work, send them back to the login form.
-      flash[:alert] = user_flash_matrix(user, params)
-      render root_path
+      flash[:warning] = user_flash_matrix(params)
+      render 'onboarding/home'
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to '/login'
+    flash[:info] = "You have been signed out"
+    redirect_to root_path
   end
 
   private
 
-  def user_flash_matrix(user, params)
-    if user.nil?
-      # Case of email not found
-      "Email and password combo don't match anything on record"
-    elsif params[:email].blank?
+  def user_flash_matrix(params)
+    if params[:email].blank?
       "Email can't be blank"
     elsif params[:password].blank?
       "Password can't be blank"

@@ -1,15 +1,23 @@
 class UsersController < ApplicationController
 	before_action :authorize, only: [:edit, :update]
 
+	def new
+		@user = User.new
+		@lead = Lead.new
+	end
+
 	def create
-	  user = User.new(create_user_params)
-	  if user.save
-	    session[:user_id] = user.id
-	    flash[:notice] = "Sign up successful"
-	    redirect_to(edit_user_path)
+	  @user = User.new(create_user_params)
+	  if @user.save
+	  	if @user.canadian_citizen
+		    session[:user_id] = @user.id
+		    flash[:notice] = "Sign up successful"
+		    redirect_to(edit_user_path)
+		  else
+
+		  end
 	  else
-	  	flash[:alert] = user.errors.first
-	    render(root_path)
+	    render(:new)
 	  end
 	end
 
@@ -26,14 +34,13 @@ class UsersController < ApplicationController
 	def update
 		user = current_user
 		user.assign_attributes(update_user_params)
-		# if user.save
-		# 	flash[:notice] = "Changes Saved"
-		# 	redirect_to(edit_user_path)
-		# else
-		# 	flash[:alert] = "Could not save"
-		# 	render edit_user_path
-		# end
-		byebug
+		if user.save
+			flash[:notice] = "Changes Saved"
+			redirect_to(edit_user_path)
+		else
+			flash[:alert] = "Could not save"
+			render edit_user_path
+		end
 	end
 
 	private
@@ -43,7 +50,8 @@ class UsersController < ApplicationController
 	  	:email,
 	  	:password,
 	  	:password_confirmation,
-	  	:phone
+	  	:phone,
+	  	:canadian_citizen
 	  )
 	end
 
@@ -60,7 +68,6 @@ class UsersController < ApplicationController
 				:address_city,
 				:address_province,
 				:address_postal_code,
-				:canadian_citizen,
 				main_id_photos_attributes:  		 [:file],
 				supporting_id_photos_attributes: [:file],
 				serious_photos_attributes: 		 	 [:file],
