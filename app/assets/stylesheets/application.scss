@@ -16,3 +16,22 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.header-box {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  hr {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+  }
+  h4 {
+    margin: 0px !important;
+  }
+}
+
+.header-item {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}

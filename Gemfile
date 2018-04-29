@@ -24,8 +24,9 @@ gem 'aasm', '~> 4.11', '>= 4.11.1'
 
 gem 'simple_form'
 gem 'oauth2'
-gem 'simple_form_fancy_uploads'
 gem 'country_select'
+gem 'mini_magick'
+gem 'font-awesome-sass', '~> 5.0.9'
 
 
 group :development, :test do

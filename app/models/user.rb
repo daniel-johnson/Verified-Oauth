@@ -9,15 +9,20 @@ class User < ApplicationRecord
 
 	has_many :main_id_photos
 	has_many :supporting_id_photos
-	has_many :serious_photos
-	has_many :silly_photos
-	has_many :interview_videos
+	# has_many :serious_photos
+	# has_many :silly_photos
+	# has_many :interview_videos
 
-	accepts_nested_attributes_for :main_id_photos
-	accepts_nested_attributes_for :supporting_id_photos
-	accepts_nested_attributes_for :serious_photos
-	accepts_nested_attributes_for :silly_photos
-	accepts_nested_attributes_for :interview_videos
+	# accepts_nested_attributes_for :main_id_photos
+	# accepts_nested_attributes_for :supporting_id_photos
+	# accepts_nested_attributes_for :serious_photos
+	# accepts_nested_attributes_for :silly_photos
+	# accepts_nested_attributes_for :interview_videos
+
+	mount_uploader :main_id, PhotoUploader
+	mount_uploader :serious_photo, PhotoUploader
+	mount_uploader :silly_photo, PhotoUploader
+	mount_uploader :interview_video, VideoUploader
 
 	# Idea - have scopes for the users current versions of ^^^ the above models. For easy access.
 

@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
 		  end
 	  else
+	  	@lead = Lead.new
 	    render(:new)
 	  end
 	end
@@ -57,22 +58,24 @@ class UsersController < ApplicationController
 
 	def update_user_params
 		params.require(:user).permit(
-				:first_name,
-				:middle_name,
-				:last_name,
-				:birthdate,
-				:favourite_color,
-				:address_number,
-				:address_street,
-				:address_unit,
-				:address_city,
-				:address_province,
-				:address_postal_code,
-				main_id_photos_attributes:  		 [:file],
-				supporting_id_photos_attributes: [:file],
-				serious_photos_attributes: 		 	 [:file],
-				silly_photos_attributes: 		 		 [:file],
-				interview_videos_attributes: 		 [:file]
+			:first_name,
+			:middle_name,
+			:last_name,
+			:birthdate,
+			:favourite_color,
+			:address_number,
+			:address_street,
+			:address_unit,
+			:address_city,
+			:address_province,
+			:address_postal_code,
+			:main_id,
+			:serious_photo
+			# main_id_photos_attributes:  		 [:file],
+			# supporting_id_photos_attributes: [:file],
+			# serious_photos_attributes: 		 	 [:file],
+			# silly_photos_attributes: 		 		 [:file],
+			# interview_videos_attributes: 		 [:file]
 		)
 	end
 end

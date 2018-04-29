@@ -26,6 +26,8 @@ class CreateUsers < ActiveRecord::Migration[5.0]
 			t.datetime  :email_verified
 			t.datetime  :user_verified
 			t.string    :main_id
+			t.string    :serious_photo
+			t.string    :silly_photo
 			t.string    :support_id
 			t.string		:intro_video
 			t.string    :password_digest
