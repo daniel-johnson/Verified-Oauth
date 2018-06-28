@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     rescue
       session[:user_id] = nil
       @current_user = nil
-      flash[:info] = "I signed you out of your non-existant user."
+      flash[:dark] = "I signed you out of your non-existant user."
       redirect_to root_path
     end
   end

@@ -3,8 +3,11 @@
   resource :user, only: [:create, :edit, :update]
   resource :lead, only: [:create]
 
-  delete 'user/main_id' => 'images#main_id', as: "user_main_id"
-  delete 'user/serious_photo' => 'images#serious_photo', as: "user_serious_photo"
+  delete 'main_id' => 'images#main_id', as: "main_id"
+  delete 'supporting_id/:id' => 'images#supporting_id', as: "supporting_id"
+  delete 'serious_photo' => 'images#serious_photo', as: "serious_photo"
+  delete 'silly_photo' => 'images#silly_photo', as: "silly_photo"
+  delete 'intro_video' => 'images#intro_video', as: "intro_video"
 
   get 	'/login' 	=> 'sessions#new'
   post 	'/login' 	=> 'sessions#create'

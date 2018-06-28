@@ -23,24 +23,19 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		# current_user
-		# current_user.main_id_photos.build
-		# current_user.supporting_id_photos.build
-		# current_user.serious_photos.build
-		# current_user.silly_photos.build
-		# current_user.interview_videos.build
 		@user = current_user
 	end
 
 	def update
-		user = current_user
-		user.assign_attributes(update_user_params)
-		if user.save
+		@user = current_user
+		@user.assign_attributes(update_user_params)
+
+		if @user.save
 			flash[:notice] = "Changes Saved"
 			redirect_to(edit_user_path)
 		else
-			flash[:alert] = "Could not save"
-			render edit_user_path
+			flash.now[:alert] = "Could not save"
+			render :edit
 		end
 	end
 
@@ -54,6 +49,9 @@ class UsersController < ApplicationController
 	  	:phone,
 	  	:canadian_citizen
 	  )
+	end
+
+	def user_supporting_id_params
 	end
 
 	def update_user_params
@@ -70,12 +68,10 @@ class UsersController < ApplicationController
 			:address_province,
 			:address_postal_code,
 			:main_id,
-			:serious_photo
-			# main_id_photos_attributes:  		 [:file],
-			# supporting_id_photos_attributes: [:file],
-			# serious_photos_attributes: 		 	 [:file],
-			# silly_photos_attributes: 		 		 [:file],
-			# interview_videos_attributes: 		 [:file]
+			:serious_photo,
+			:silly_photo,
+			:intro_video,
+			supporting_ids: []
 		)
 	end
 end

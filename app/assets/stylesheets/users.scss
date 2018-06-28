@@ -3,22 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .image-container {
-  height: auto;
-  position: relative;
-  display: inline-block;
-  overflow:auto;
-  display: block;
+  // height: auto;
+  // position: relative;
+  // display: inline-block;
+  // overflow:auto;
+  // display: block;
 }
 
 .image-itself {
-  position: absolute;
-  top: 0;
-  left: 0;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
 }
 
 .image-delete {
-  position: absolute;
-  z-index: 10;
-  top: 8px;
-  right: 8px;
+  // position: absolute;
+  // z-index: 10;
+  // top: 8px;
+  // right: 8px;
+}
+
+.profile__bottom-spacer {
+  margin-bottom: 40px !important;
 }

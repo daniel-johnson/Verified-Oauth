@@ -3,14 +3,14 @@
     <h2>Canadian Citizen Signup</h2>
 
     <%= simple_form_for @user, url: user_path do |f| %>
-      <%= f.input   :email                          %>
-      <%= f.input   :phone                          %>
-      <%= f.input   :password                       %>
-      <%= f.input   :password_confirmation          %>
+      <%= f.input   :email                                  %>
+      <%= f.input   :phone                                  %>
+      <%= f.input   :password, required: true               %>
+      <%= f.input   :password_confirmation, required: true  %>
       <%= f.input   :canadian_citizen,
                       as: :radio_buttons,
-                      required: true %>
-      <%= f.button  :submit, "Create Account"       %>
+                      required: true                        %>
+      <%= f.button  :submit, "Create Account"               %>
     <% end %>
   </div>
   <div class="col-xs-12 col-md-6">

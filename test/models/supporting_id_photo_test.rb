@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SupportingIdPhotoTest < ActiveSupport::TestCase
+class SupportingIdTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -22,13 +22,15 @@
 .header-box {
   margin-top: 5px;
   margin-bottom: 5px;
-  hr {
-    margin-top: 5px !important;
-    margin-bottom: 5px !important;
-  }
   h4 {
     margin: 0px !important;
   }
+}
+
+.nav__line {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  border-top-color: #9c9c9c;
 }
 
 .header-item {

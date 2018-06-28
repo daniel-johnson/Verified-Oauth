@@ -4,51 +4,161 @@
     <p>Please provide your information.</p>
 
     <%= simple_form_for( @user, url: user_path ) do |f| %>
-      <%= f.input :first_name                             %>
-      <%= f.input :middle_name                            %>
-      <%= f.input :last_name                              %>
-      <%= f.input :birthdate,
-                  as: :date,
-                  html5: true,
-                  start_year: Date.today.year - 90,
-                  end_year: Date.today.year - 12 %>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+          <%= f.input :first_name                             %>
+          <%= f.input :middle_name                            %>
+          <%= f.input :last_name                              %>
+          <%= f.input :birthdate,
+                      as: :date,
+                      html5: true,
+                      start_year: Date.today.year - 90,
+                      end_year: Date.today.year - 12 %>
+          <%= f.input :favourite_color, input_html: {type: 'color'} %>
 
-      <%= f.input :favourite_color, input_html: {type: 'color'} %>
-      <%= f.input :serious_photo, as: :file, input_html: {onchange: "readURL(this);" } %>
-      <div>
-        <div class="image-container">
-          <% if f.object.serious_photo? %>
-            <%= image_tag f.object.serious_photo.thumb.url, class: 'image-itself img-thumbnail' %>
-            <%= link_to(user_serious_photo_path, method: :delete, class: "image-delete") do %>
-              <span class="fa-layers fa-fw">
-                <i class="fas fa-circle"></i>
-                <i class="fas fa-inverse fa-times-circle"></i>
-              </span>
-            <% end %>
-          <% else %>
-            <img src="" id="user_serious_photo_preview">
-          <% end %>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  <%= f.input :serious_photo, as: :file, input_html: { onchange: "readSeriousURL(this);" } %>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  <div class="image-container">
+                    <% if @user.serious_photo.attached? %>
+                      <%= image_tag @user.serious_photo.variant(resize: "100x100>"), class: 'image-itself img-thumbnail' %>
+                      <%= link_to(serious_photo_path, method: :delete, class: "image-delete") do %>
+                        <span class="fa-layers fa-fw fa-lg">
+                          <i class="fas fa-circle fa-lg"></i>
+                          <i class="fas fa-inverse fa-times-circle fa-lg"></i>
+                        </span>
+                      <% end %>
+                    <% else %>
+                      <img class="img-thumbnail" src="" id="serious_photo_preview">
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  <%= f.input :silly_photo, as: :file, input_html: { onchange: "readSillyURL(this);" } %>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                  <div class="image-container">
+                    <% if @user.silly_photo.attached? %>
+                      <%= image_tag @user.silly_photo.variant(resize: "100x100>"), class: 'image-itself img-thumbnail' %>
+                      <%= link_to(silly_photo_path, method: :delete, class: "image-delete") do %>
+                        <span class="fa-layers fa-fw fa-lg">
+                          <i class="fas fa-circle fa-lg"></i>
+                          <i class="fas fa-inverse fa-times-circle fa-lg"></i>
+                        </span>
+                      <% end %>
+                    <% else %>
+                      <img src="" id="silly_photo_preview">
+                    <% end %>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <%= f.input :address_number                         %>
+          <%= f.input :address_street                         %>
+          <%= f.input :address_unit                           %>
+          <%= f.input :address_city                           %>
+          <%= f.input :address_province                       %>
+          <%= f.input :address_postal_code                    %>
+
+          <!-- Main Id -->
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  <%= f.input :main_id, as: :file, input_html: { onchange: "readMainURL(this);" } %>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                  <div class="image-container">
+                    <% if f.object.main_id.attached? %>
+                      <%= image_tag @user.main_id.variant(resize: "100x100>"), class: 'image-itself img-thumbnail' %>
+                      <%= link_to(main_id_path, method: :delete, class: "image-delete") do %>
+                        <span class="fa-layers fa-fw fa-lg">
+                          <i class="fas fa-circle fa-lg"></i>
+                          <i class="fas fa-inverse fa-times-circle fa-lg"></i>
+                        </span>
+                      <% end %>
+                    <% else %>
+                      <img src="" id="main_id_preview">
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-6 col-xs-12">
+                  <%= f.input :supporting_ids, as: :file, input_html: { multiple: 'multiple' } %>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                  <% if @user.supporting_ids.present? %>
+                    <% @user.supporting_ids.each_with_index do |photo, index| %>
+                      <div>
+                        <%= image_tag photo.variant(resize: "100x100>"), class: 'image-itself img-thumbnail' %>
+                        <%= link_to( supporting_id_path(index), method: :delete) do %>
+                          <span class="fa-layers fa-fw fa-lg">
+                            <i class="fas fa-circle fa-lg"></i>
+                            <i class="fas fa-inverse fa-times-circle fa-lg"></i>
+                          </span>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <%= f.input :intro_video, as: :file    %>
+                </div>
+
+                <div class="col-sm-6">
+                  <% if @user.intro_video.attached? %>
+                    <br class="hidden-xs">
+                    <%= image_tag @user.intro_video.preview(resize: "100x100>"), class: 'image-itself img-thumbnail' %>
+                    <%= link_to(intro_video_path, method: :delete, class: "image-delete") do %>
+                      <span class="fa-layers fa-fw fa-lg">
+                        <i class="fas fa-circle fa-lg"></i>
+                        <i class="fas fa-inverse fa-times-circle fa-lg"></i>
+                      </span>
+                    <% end %>
+                  <% end %>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="profile__bottom-spacer" >
+            <%= f.button :submit, "Save Changes" %>
+          </div>
+          <br>
         </div>
-      </div>
-      <%= f.input :silly_photo, as: :file                 %>
-      <%= f.input :address_number                         %>
-      <%= f.input :address_street                         %>
-      <%= f.input :address_unit                           %>
-      <%= f.input :address_city                           %>
-      <%= f.input :address_province                       %>
-      <%= f.input :address_postal_code                    %>
-      <%= f.input :main_id, as: :file %>
-      <% if f.object.main_id? %>
-        <div id="main_id">
-            <%= image_tag f.object.main_id.thumb.url %>
-            <%= link_to 'delete', user_main_id_path, method: 'delete', class: "btn btn-default" %>
-        </div>
-      <% end %>
-      <%= f.input :supporting_id_photos, as: :file, input_html: { multiple: 'multiple' }  %>
-      <%= f.input :interview_videos, as: :file            %>
-      <%= f.button :submit, "Save Changes"                %>
     <% end %>
   </div>
-
-  <!-- <p>Capture Video: <input type="file" accept="video/*" id="capture" capture="camcorder"> -->
 </div>

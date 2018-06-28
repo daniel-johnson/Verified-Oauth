@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>VerifiedOauth</title>
+    <title>Verified Identity</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
-    <%= favicon_link_tag %>
-    <%= favicon_link_tag( 'favicon.ico', rel: 'apple-touch-icon', type: 'image/png') %>
+    <%= favicon_link_tag 'favicon.png' %>
   </head>
 
   <body>
@@ -25,6 +24,9 @@
           		<% end %>
           </div>
         </div>
+      </div>
+      <hr class="nav__line">
+      <div class="row">
         <div class="col-xs-4">
           <div class="header-item text-left">
             <% flash.each do |name, message| %>
@@ -33,7 +35,6 @@
           </div>
         </div>
       </div>
-      <hr>
       <%= yield %>
     </div>
   </body>
